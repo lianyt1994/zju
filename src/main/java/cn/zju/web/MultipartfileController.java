@@ -26,7 +26,7 @@ public class MultipartfileController {
 
     //static String PIC_PATH = new File("./").getAbsolutePath()+"src/main/webapp/images" + "/t/";
     //static final String PIC_PATH = Thread.currentThread().getContextClassLoader().getResource("").toString()+"../../src/main/webapp/images" + "/t/";
-    static final String PIC_PATH = "C:/Users/Administrator/Desktop/zju/src/main/webapp/images" + "/t/";
+    static final String PIC_PATH = "C:/Users/Administrator/Desktop/zju-master/src/main/webapp/images" + "/t/";
     //String PIC_PATH = System.getProperty("user.dir")+"/src/main/webapp/images" + "/t/";
 
     @Autowired
