@@ -32,7 +32,6 @@
 
         function addToCart(id) {
             window.location = "/cart/addItem?productId=" + id;
-            alert("添加成功");
         }
 
         function checklogin(id, name) {
