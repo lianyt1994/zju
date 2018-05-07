@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zju.mapper.CartMapper" >
+ <resultMap id="BaseResultMap" type="cn.zju.bean.Cart" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user" property="user" jdbcType="VARCHAR" />
+    <result column="productId" property="productId" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="productName" property="productName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectItemsByUser" resultMap="BaseResultMap">
+    SELECT id,user,productId,amount,productName
+    FROM Cart
+    WHERE user= #{user}
+  </select>
+
+  <select id="selectItemsByUserAndProduct" resultType="cn.zju.bean.Cart">
+    SELECT id,user,productId,amount,productName
+    FROM Cart
+    WHERE user= #{user} AND productid = #{productId}
+    limit 0,1
+  </select>
+  
+  <insert id="insertCartItem" parameterType="cn.zju.bean.Cart">
+    INSERT INTO Cart (user,productId,amount)
+    VALUE (#{user},#{productId},#{amount})
+  </insert>
+
+  <update id="updateItem"   >
+    UPDATE Cart
+    SET user = #{user},productId = #{productId},amount = #{amount}
+      <where>
+          <if test="#{user}!=null">
+              user = #{user}
+          </if>
+          <if test="#{productId}!=null">
+              AND productId = #{productId}
+          </if>
+      </where>
+  </update>
+
+    <delete id="deleteItem"   >
+        DELETE FROM Cart
+        <where>
+            <if test="#{user}!=null">
+                user = #{user}
+            </if>
+            <if test="#{productId}!=null">
+                AND productId = #{productId}
+            </if>
+        </where>
+    </delete>
+
+</mapper>
